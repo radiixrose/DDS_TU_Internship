@@ -51,9 +51,8 @@ const TaskManagementSystem = () => {
   };
 
   const handleSaveTask = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
-    // Validate the form inputs manually
     if (
       !selectedTask.description ||
       !selectedTask.assignee ||
@@ -62,16 +61,15 @@ const TaskManagementSystem = () => {
       !selectedTask.dueDate
     ) {
       alert("Please fill all fields before saving the task.");
-      return; // Abort the save process if any field is missing
+      return;
     }
 
     if (selectedTask.dueDate === "Invalid Date") {
       alert("Please enter a valid due date.");
-      return; // Abort the save process if the date is invalid
+      return;
     }
 
     if (!selectedTask.id) {
-      // If there's no selectedTask.id, it means we're creating a new task.
       const formData = {
         id: tasks.length + 1,
         description: selectedTask.description,
@@ -82,7 +80,6 @@ const TaskManagementSystem = () => {
       };
       setTasks((prevTasks) => [...prevTasks, formData]);
     } else {
-      // If there's a selectedTask.id, it means we're updating an existing task.
       const updatedTasks = tasks.map((task) =>
         task.id === selectedTask.id ? selectedTask : task
       );
